@@ -4,7 +4,7 @@ import './index.css'
 
 import App from './App.jsx'
 import HomePage from './pages/HomePage'
-import ProfilePage from './pages'
+import ProfilePage from './pages/Profile'
 
 const router = createBrowserRouter([
   {
