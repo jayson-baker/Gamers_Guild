@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { Outlet } from 'react-router-dom';
-import Navbar from './components/navbar'
-import Homepage from './components/homepage'
-import Profile from './components/profile'
-import MyGames from './components/myGames'
-import MyPosts from './components/myPosts'
+import Navbar from './components/Navbar'
+import HomePage from './components/HomePage'
+import Profile from './components/Profile'
+import MyGames from './components/MyGames'
+import MyPosts from './components/MyPosts'
 import './App.css'
 
 function App() {

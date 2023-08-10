@@ -1,7 +1,7 @@
 import React from "react";
 
-function myGames(){
+function MyGames(){
 
 }
 
-export default myGames
+export default MyGames
