@@ -8,7 +8,7 @@ const gameSchema = new Schema({
     required: true,
     trim: true
   },
- Image: {
+ image: {
   type: String,
   required: true,
   trim: true
