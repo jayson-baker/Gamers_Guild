@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
-import Navbar from './components/navbar'
-import Homepage from './components/homepage'
-import Profile from './components/profile'
-import MyGames from './components/myGames'
-import MyPosts from './components/myPosts'
+import { Outlet } from 'react-router-dom';
+import Navbar from './components/Navbar'
+import HomePage from './components/HomePage'
+import Profile from './components/Profile'
+import MyGames from './components/MyGames'
+import MyPosts from './components/MyPosts'
 import './App.css'
 
 function App() {
@@ -25,15 +26,12 @@ function App() {
 
   return (
     <>
-      <div>
-        <Navbar>
-          pages={pages}
+      
+        <Navbar />
+          {/* pages={pages}
           setCurrentPage={setCurrentPage}
-          currentPage={currentPage}
-
-        </Navbar>
-        <main>
-          {(()=>{
+          currentPage={currentPage} */}
+          {/* {(()=>{
             switch(currentPage.name){
               case 'profile':
                 return<Profile />
@@ -44,10 +42,9 @@ function App() {
               default:
                 return <Homepage />
             }
-          })}
-           
-        </main>
-      </div>
+          })} */}
+          <Outlet />
+
     </>
   )
 }
