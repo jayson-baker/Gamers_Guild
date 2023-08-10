@@ -4,6 +4,7 @@ import Homepage from './components/homepage'
 import Profile from './components/profile'
 import MyGames from './components/myGames'
 import MyPosts from './components/myPosts'
+import PageNav
 import './App.css'
 
 function App() {
