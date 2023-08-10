@@ -10,7 +10,7 @@ function Navbar(){
                     Gamers Guild
                 </span>
     
-                <PageNav {...props}></Navigation>
+                <PageNav {...props}></PageNav>
             </div>
         </nav>
     )
