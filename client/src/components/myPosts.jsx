@@ -6,7 +6,7 @@ function PageNav(props){
         setCurrentPage,
         CurrentPage
     } = props;
-} 
+
 useEffect(()=>{document.title = CurrentPage.name }, [currentPage])
 
 return(
@@ -16,5 +16,6 @@ return(
         page to that button */}
     </div>
 )
+} 
 
 export default PageNav;
