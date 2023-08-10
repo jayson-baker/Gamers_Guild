@@ -3,7 +3,7 @@ const { signToken, AuthenticationError } = require('../utils/auth');
 
 const resolvers = {
   Query: {
-    
+    // gets user information, including post and games for viewing profiles.
     user: async (context) => {
       if (context.user) {
         const user = await User.findById(context.user._id)
@@ -45,6 +45,15 @@ const resolvers = {
           path: 'game',
           select: '-__v'
         });
+        return post;
+      }
+
+      throw AuthenticationError;
+    },
+    //gets a post
+    getPostByGame: async (context) => {
+      if (context.post) {
+        const post = await Posts.findById(context.post.game._id)
         return post;
       }
 
