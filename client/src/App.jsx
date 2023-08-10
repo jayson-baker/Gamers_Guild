@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Outlet } from 'react-router-dom';
 import Navbar from './components/navbar'
 import Homepage from './components/homepage'
 import Profile from './components/profile'
@@ -25,15 +26,12 @@ function App() {
 
   return (
     <>
-      <div>
-        <Navbar>
-          pages={pages}
+      
+        <Navbar />
+          {/* pages={pages}
           setCurrentPage={setCurrentPage}
-          currentPage={currentPage}
-
-        </Navbar>
-        <main>
-          {(()=>{
+          currentPage={currentPage} */}
+          {/* {(()=>{
             switch(currentPage.name){
               case 'profile':
                 return<Profile />
@@ -44,10 +42,9 @@ function App() {
               default:
                 return <Homepage />
             }
-          })}
-           
-        </main>
-      </div>
+          })} */}
+          <Outlet />
+
     </>
   )
 }
