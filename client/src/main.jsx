@@ -1,34 +1,28 @@
-import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Profile from "./components/Profile"
-import MyGames from './components/MyGames';
-import HomePage from './components/HomePage';
-import App from './App.jsx'
+import {createBrowserRouter, RouterProvider} from 'react-router-dom'
 import './index.css'
+
+import App from './App.jsx'
+import HomePage from './pages/HomePage'
+import ProfilePage from './pages'
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
-    errorElement: <ErrorPage />,
     children: [
       {
         index: true,
-        element: <HomePage />,
+        element: <HomePage />
       },
       {
         path: 'profile/:id',
-        element: <Profile />,
-      },
-      {
-        path: 'myGames',
-        element: <MyGames />,
-      },
-    ],
-  },
-]);
+        element: <ProfilePage />
+      }
+    ]
+  }
+])
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <RouterProvider router={router}/>
+  <RouterProvider router={router} />
 )
