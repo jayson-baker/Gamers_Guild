@@ -2,8 +2,6 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 const bcrypt = require('bcrypt');
-const Games = require('./Games');
-const Posts = require('./Post');
 
 const userSchema = new Schema({
   username: {
@@ -21,13 +19,14 @@ const userSchema = new Schema({
     required: true,
     minlength: 5
   },
-  games: [Games.Schema],
-  posts: [
-    {
+  games: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Games'
+}],
+  posts: [{
       type: Schema.Types.ObjectId,
       ref: 'Posts'
-    }
-  ],
+  }],
   friends: [{
     type: Schema.Types.ObjectId,
      ref: 'User'}],

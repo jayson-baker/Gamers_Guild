@@ -20,7 +20,11 @@ const postsSchema = new Schema(
         type: String,
       required: true,
     },
-    reactions: [replySchema],
+    game: [{
+      type: Schema.Types.ObjectId,
+      ref: 'Games'
+  }],
+    replys: [replySchema],
 },
 
 {
