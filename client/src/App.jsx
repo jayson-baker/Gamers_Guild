@@ -43,7 +43,12 @@ function App() {
                 return <Homepage />
             }
           })} */}
+          <div>
+            sidebar
+          </div>
+          <section >
           <Outlet />
+          </section>
 
     </>
   )

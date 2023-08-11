@@ -30,18 +30,19 @@ const typeDefs = `
     user: User
     posts: [Post!]!
     getPost: Post
-    getPost: Post
+    getPostByGame: Post
   }
   
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     updateUser(username: String, email: String): User
-    updatePost(id: ID!, content: String): Post
-    addPost(content: String!, gameId: ID!): Post
+    updatePost(id: ID!, content: String): Posts
+    addPost(content: String!, gameId: ID!): Posts
     deletePost(id: ID!): User
-    addReply(post: ID!, content: String!): Post
+    addReply(post: ID!, content: String!): Posts
     deleteReply(post: ID!, reply: ID!): Post
-    addGame(name: String!): Game
+    addGameToDB(name: String!, image: String!): Games
+    addGame(name: String!): Games
     deleteGame(id: ID!): User
     addFriend(id: ID!): User
     deleteFriend(id: ID!): User

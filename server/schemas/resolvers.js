@@ -83,7 +83,7 @@ const resolvers = {
     },
     addPost: async (parent, args, context) => {
       if (context.user) {
-        return await Posts.create(context.user._id, args, { new: true })
+        return await Posts.create(args, { new: true })
         .then( async ({_id})=> {
           return await User.findByIdAndUpdate(
             { _id: context.user._id  },
@@ -124,9 +124,14 @@ const resolvers = {
       }
       throw AuthenticationError;
     },
-    addGame: async (parent, args, context) => {
+    addGameToDB: async (parent, args) => {
+      const game = await Games.create(args);
+
+      return game;
+    },
+    addGame: async (parent, {id}, context) => {
       if (context.user) {
-        return await Games.create(context.user._id, args, { new: true })
+        return await Games.findByID(id, { new: true })
         .then( async ({_id})=> {
           return await User.findByIdAndUpdate(
             { _id: context.user._id  },
@@ -138,7 +143,7 @@ const resolvers = {
     },
     deleteGame: async (parent, {id}, context) => {
       if (context.user) {
-        return await Games.findOneAndRemove(id)
+        return await Games.findByID(id)
         .then( async ({_id})=> {
           return await User.findByIdAndUpdate(
             { _id: context.user._id },
@@ -148,6 +153,8 @@ const resolvers = {
       }
       throw AuthenticationError;
     },
+
+    /* if have extra time
     addFriend: async (parent, {id}, context) => {
       if (context.user) {
         const user = await User.findOne( id)
@@ -177,7 +184,7 @@ const resolvers = {
         });
       }
       throw AuthenticationError;
-    },
+    },*/
     
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
