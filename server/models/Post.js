@@ -1,10 +1,16 @@
 const { Schema, model } = require('mongoose');
 const replySchema = require('./replys.js');
-const formatDate = require('../util/format.js');
+const formatDate = require('../utils/format.js');
 
 // Schema to create user model
 const postsSchema = new Schema(
   {
+    title: {
+      type: String,
+      required: true,
+      unique: true,
+      max_length: 280,
+    },
     text: {
       type: String,
       required: true,
@@ -20,10 +26,10 @@ const postsSchema = new Schema(
         type: String,
       required: true,
     },
-    game: [{
+    game: {
       type: Schema.Types.ObjectId,
       ref: 'Games'
-  }],
+  },
     replys: [replySchema],
 },
 
