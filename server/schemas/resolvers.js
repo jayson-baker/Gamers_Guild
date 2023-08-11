@@ -1,5 +1,6 @@
 const { User, Posts, Games } = require('../models');
 const { signToken, AuthenticationError } = require('../utils/auth');
+const {validateTwitch} = require('../utils/api')
 
 const resolvers = {
   Query: {
@@ -34,9 +35,9 @@ const resolvers = {
       return post
     },
     //gets a post
-    getPost: async (context) => {
+    getPost: async (args, context) => {
       if (context.post) {
-        const post = await Posts.findById(context.post._id)
+        const post = await Posts.findById(args.post._id)
         .populate({
           path: 'replies',
           select: '-__v'
@@ -51,9 +52,9 @@ const resolvers = {
       throw AuthenticationError;
     },
     //gets a post
-    getPostByGame: async (context) => {
+    getPostByGame: async (args,context) => {
       if (context.post) {
-        const post = await Posts.findById(context.post.game._id)
+        const post = await Posts.findById(args.post.game._id)
         return post;
       }
 
@@ -83,7 +84,7 @@ const resolvers = {
     },
     addPost: async (parent, args, context) => {
       if (context.user) {
-        return await Posts.create(context.user._id, args, { new: true })
+        return await Posts.create(args, { new: true })
         .then( async ({_id})=> {
           return await User.findByIdAndUpdate(
             { _id: context.user._id  },
@@ -124,9 +125,14 @@ const resolvers = {
       }
       throw AuthenticationError;
     },
-    addGame: async (parent, args, context) => {
+    addGameToDB: async (parent, args) => {
+      const game = await Games.create(args);
+
+      return game;
+    },
+    addGame: async (parent, {id}, context) => {
       if (context.user) {
-        return await Games.create(context.user._id, args, { new: true })
+        return await Games.findByID(id, { new: true })
         .then( async ({_id})=> {
           return await User.findByIdAndUpdate(
             { _id: context.user._id  },
@@ -138,7 +144,7 @@ const resolvers = {
     },
     deleteGame: async (parent, {id}, context) => {
       if (context.user) {
-        return await Games.findOneAndRemove(id)
+        return await Games.findByID(id)
         .then( async ({_id})=> {
           return await User.findByIdAndUpdate(
             { _id: context.user._id },
@@ -148,6 +154,8 @@ const resolvers = {
       }
       throw AuthenticationError;
     },
+
+    /* if have extra time
     addFriend: async (parent, {id}, context) => {
       if (context.user) {
         const user = await User.findOne( id)
@@ -177,7 +185,7 @@ const resolvers = {
         });
       }
       throw AuthenticationError;
-    },
+    },*/
     
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
@@ -193,8 +201,9 @@ const resolvers = {
       }
 
       const token = signToken(user);
+      const api = validateTwitch();
 
-      return { token, user };
+      return { token, user, api };
     }
   }
 };
