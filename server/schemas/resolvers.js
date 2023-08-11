@@ -20,6 +20,7 @@ const resolvers = {
           path: 'friends',
           select: '-__v'
         });
+        user.posts.sort((a, b) => b.purchaseDate - a.purchaseDate);
         return user;
       }
 
@@ -35,9 +36,8 @@ const resolvers = {
       return post
     },
     //gets a post
-    getPost: async (args, context) => {
-      if (context.post) {
-        const post = await Posts.findById(args.post._id)
+    getPost: async ({_id}, context) => {
+        const post = await Posts.findById(_id)
         .populate({
           path: 'replies',
           select: '-__v'
@@ -47,9 +47,6 @@ const resolvers = {
           select: '-__v'
         });
         return post;
-      }
-
-      throw AuthenticationError;
     },
     //gets games saved to db to search for posts.
     getGamesFromDB: async (context) => {
@@ -117,7 +114,7 @@ const resolvers = {
       if (context.user) {
         return await Posts.findOneAndUpdate(
           { _id: args.post._id },
-          { $push: { replys: args.replys._id} },
+          { $push: { replies: args.replies._id} },
           { new: true, runValidators: true }
       )
       }
@@ -127,7 +124,7 @@ const resolvers = {
       if (context.user) {
         return await Posts.findOneAndUpdate(
           { _id: args.post._id },
-          { $pull: { replys: args.replys._id} },
+          { $pull: { replies: args.replies._id} },
           { new: true, runValidators: true })
       }
       throw AuthenticationError;

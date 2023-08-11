@@ -1,5 +1,5 @@
 const { Schema, model } = require('mongoose');
-const replySchema = require('./replys.js');
+const replieSchema = require('./replies.js');
 const formatDate = require('../utils/format.js');
 
 // Schema to create user model
@@ -30,7 +30,7 @@ const postsSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: 'Games'
   },
-    replys: [replySchema],
+    replies: [replieSchema],
 },
 
 {
