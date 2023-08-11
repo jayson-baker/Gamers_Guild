@@ -51,9 +51,16 @@ const resolvers = {
 
       throw AuthenticationError;
     },
-    //gets a post
+    //gets games saved to db to search for posts.
+    getGamesFromDB: async (context) => {
+      const games = await Games.find()
+      return games
+      
+    },
+
+    //gets a post by its game tag
     getPostByGame: async (args,context) => {
-      if (context.post) {
+      if (args.post) {
         const post = await Posts.findById(args.post.game._id)
         return post;
       }

@@ -31,6 +31,7 @@ const typeDefs = `
     user: User
     posts: [Post!]!
     getPost: Post
+    getGamesFromDB: Game
     getPostByGame: Post
   }
   
