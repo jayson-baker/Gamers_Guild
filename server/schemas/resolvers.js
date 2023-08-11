@@ -34,9 +34,9 @@ const resolvers = {
       return post
     },
     //gets a post
-    getPost: async (context) => {
+    getPost: async (args, context) => {
       if (context.post) {
-        const post = await Posts.findById(context.post._id)
+        const post = await Posts.findById(args.post._id)
         .populate({
           path: 'replies',
           select: '-__v'
@@ -51,9 +51,9 @@ const resolvers = {
       throw AuthenticationError;
     },
     //gets a post
-    getPostByGame: async (context) => {
+    getPostByGame: async (args,context) => {
       if (context.post) {
-        const post = await Posts.findById(context.post.game._id)
+        const post = await Posts.findById(args.post.game._id)
         return post;
       }
 

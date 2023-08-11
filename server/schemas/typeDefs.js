@@ -10,12 +10,13 @@ const typeDefs = `
     email: String!
     posts: [Post!]!
     games: [Game!]!
-    friends: [User!]!
   }
   
   type Post {
     _id: ID!
-    content: String!
+    title: String!
+    text: String!
+    createdAt: String!
     game: Game!
     replies: [Post!]!
   }
@@ -36,13 +37,13 @@ const typeDefs = `
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     updateUser(username: String, email: String): User
-    updatePost(id: ID!, content: String): Posts
-    addPost(content: String!, gameId: ID!): Posts
+    updatePost(id: ID!, content: String): Post
+    addPost(content: String!, gameId: ID!): Post
     deletePost(id: ID!): User
-    addReply(post: ID!, content: String!): Posts
+    addReply(post: ID!, content: String!): Post
     deleteReply(post: ID!, reply: ID!): Post
-    addGameToDB(name: String!, image: String!): Games
-    addGame(name: String!): Games
+    addGameToDB(name: String!, image: String!): Game
+    addGame(name: String!): Game
     deleteGame(id: ID!): User
     addFriend(id: ID!): User
     deleteFriend(id: ID!): User

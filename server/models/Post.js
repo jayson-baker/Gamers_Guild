@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose');
 const replySchema = require('./replys.js');
-const formatDate = require('../util/format.js');
+const formatDate = require('../utils/format.js');
 
 // Schema to create user model
 const postsSchema = new Schema(
