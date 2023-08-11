@@ -8,7 +8,8 @@ const Navbar = () => {
   const [nav, setNav] = useState(false)
   const handleClick = () => setNav(!nav)
   return (
-    <div className="fixed w-full h-[80px] flex justify-between items-center px-4 bg-[#27374D] text-[#DDE6ED]">
+    
+    <div className="w-full h-[80px] flex justify-between items-center px-4 bg-[#27374D] text-[#DDE6ED]">
       <div>
         <img src={Logo} alt="Gamers Guild Logo" style={{width: '120px'}} />
       </div>
@@ -30,7 +31,9 @@ const Navbar = () => {
         <li className='py-6 text-4xl'><Link onClick={handleClick} to="/">Log In</Link></li>
       </ul>
     </div>
+
   )
 }
 
 export default Navbar;
+
