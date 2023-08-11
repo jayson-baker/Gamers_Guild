@@ -1,5 +1,6 @@
 const { User, Posts, Games } = require('../models');
 const { signToken, AuthenticationError } = require('../utils/auth');
+const {validateTwitch} = require('../utils/api')
 
 const resolvers = {
   Query: {
@@ -200,8 +201,9 @@ const resolvers = {
       }
 
       const token = signToken(user);
+      const api = validateTwitch();
 
-      return { token, user };
+      return { token, user, api };
     }
   }
 };
