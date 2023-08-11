@@ -1,5 +1,5 @@
 const { Schema, Types } = require('mongoose');
-const formatDate = require('../util/format.js');
+const formatDate = require('../utils/format.js');
 
 // Schema to create Student model
 const replySchema = new Schema(
