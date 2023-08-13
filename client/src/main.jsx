@@ -6,6 +6,7 @@ import './index.css'
 import App from './App.jsx'
 import HomePage from './pages/HomePage'
 import ProfilePage from './pages/Profile'
+import MyGames from './pages/MyGames';
 import "./index.css";
 
 const router = createBrowserRouter([
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
       {
         path: 'profile/:id',
         element: <ProfilePage />
+      },
+      {
+        path: 'myGames/',
+        element: <MyGames />
       }
     ]
   }
