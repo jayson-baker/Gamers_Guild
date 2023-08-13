@@ -9,7 +9,7 @@ const Navbar = () => {
   const handleClick = () => setNav(!nav)
   return (
     
-    <div className="w-full h-[80px] flex justify-between items-center px-4 bg-[#27374D] text-[#DDE6ED]">
+    <div className="sticky top-0 w-full h-[80px] flex justify-between items-center px-4 bg-[#27374D] text-[#DDE6ED] border-2 border-{white}">
       <div>
         <img src={Logo} alt="Gamers Guild Logo" style={{width: '120px'}} />
       </div>
