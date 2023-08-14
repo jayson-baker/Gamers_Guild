@@ -16,6 +16,13 @@
   height: 250px;
 }
 
+.post-cardDiv {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 192px;
+}
+
 .card-div:hover {
   background-image: linear-gradient(
     to right,

@@ -3,6 +3,8 @@ import Placeholder from './assets/Placeholder1.jpg'
 
 function HomePage(){
 
+
+    
     return(
     <div className="w-full md:h-screen text-[#DDE6ED] bg-[#27374D]">
         <div className="max-w-[1000px] mx-auto p-4 flex flex-col justify-center w-full h-full">

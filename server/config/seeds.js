@@ -54,7 +54,7 @@ db.once('open', async () => {
   });
 
   await User.create({
-    firstName: 'Elijah',
+    username: 'Elijah',
     email: 'eholt@testmail.com',
     password: 'password12345',
     games: [games[1]._id, games[2]._id],
