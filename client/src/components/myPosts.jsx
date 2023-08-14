@@ -1,21 +1,27 @@
-import React, { useEffect }from "react";
+import React, { useState, useEffect } from "react";
+import { useQuery } from "@apollo/client";
+import { QUERY_POST } from "../utils/queries.js";
 
-function PageNav(props){
-    const {
-        pages=[],
-        setCurrentPage,
-        CurrentPage
-    } = props;
+function myPosts() {
+  const { loading, data } = useQuery(QUERY_POST);
 
-useEffect(()=>{document.title = CurrentPage.name }, [currentPage])
+  if (loading) return <p>loading...</p>;
+  if (error) return <pr>Error: {error.message}</pr>;
 
-return(
+  const posts = data.posts;
+
+  return (
     <div>
-        {/* needs code to will map over the pages array and that has a 
-        function while it maps to have an onclick to change the current 
-        page to that button */}
+      <h2>Posts</h2>
+      <select name="myposts">
+        {posts.map((post) => (
+          <option key={post.id} value={post.id}>
+            {post.title}
+          </option>
+        ))}
+      </select>
     </div>
-)
-} 
+  );
+}
 
-export default PageNav;
+export default myPosts;
