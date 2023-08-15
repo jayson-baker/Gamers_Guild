@@ -2,7 +2,7 @@ const { Schema, Types } = require('mongoose');
 const formatDate = require('../utils/format.js');
 
 // Schema to create Student model
-const replySchema = new Schema(
+const replieSchema = new Schema(
   {
     id: {
         type: Schema.Types.ObjectId,
@@ -33,4 +33,4 @@ const replySchema = new Schema(
 
 
 
-module.exports = replySchema;
+module.exports = replieSchema;

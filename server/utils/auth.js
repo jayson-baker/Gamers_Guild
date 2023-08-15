@@ -1,6 +1,7 @@
 const { GraphQLError } = require('graphql');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
+const vaidateTwitch = require('./api')
 
 const secret = process.env.SVST;
 const expiration = '2h';
@@ -33,8 +34,9 @@ module.exports = {
 
     return req;
   },
-  signToken: function ({ username, email, _id }) {
-    const payload = { username, email, _id };
+  signToken: async function ({ username, email, _id }) {
+    const apiKey = await vaidateTwitch();
+    const payload = { username, email, _id, apiKey };
 
     return jwt.sign({ data: payload }, secret, { expiresIn: expiration });
   },
