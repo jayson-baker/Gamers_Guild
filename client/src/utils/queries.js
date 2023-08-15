@@ -32,6 +32,7 @@ export const QUERY_ALL_POSTS = gql`
         game{
             _id
             name
+            image
         }
     }
   }
