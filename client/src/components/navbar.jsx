@@ -4,13 +4,16 @@ import Logo from './assets/GamersGuildLogo.png'
 import { Link } from 'react-router-dom'
 import {FaBars, FaTimes} from 'react-icons/fa'
 import LoginModal from './LoginModal'
+import SignupModal from './SignupModal'
 
 const Navbar = () => {
   const [nav, setNav] = useState(false)
   const handleClick = () => setNav(!nav)
 
   const [showModal, setShowModal] = useState(false);
+  const [showSignupModal, setShowSignupModal] = useState(false);
   const handleOnClose = () => setShowModal(false);
+  const handleOnCloseSignup = () => setShowSignupModal(false);
 
   return (
     
@@ -25,9 +28,13 @@ const Navbar = () => {
         <li>
           <button className="btn" onClick={()=> setShowModal(true)}>Login</button>      
         </li>
+        <li>
+          <button className="btn" onClick={()=> setShowSignupModal(true)}>Sign Up</button>      
+        </li>
       </ul>
 
       <LoginModal onClose={handleOnClose} visible={showModal}/>
+      <SignupModal onClose={handleOnCloseSignup} visible={showSignupModal}/>
 
       {/* Hamburger */}
       <div onClick={handleClick} className='md:hidden z-10'>
