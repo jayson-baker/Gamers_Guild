@@ -1,7 +1,7 @@
 const router = require("express").Router();
 require("dotenv").config();
 
-router.get("/games", async (req,res) => {
+router.get("/findGames", async (req,res) => {
     try {
         const requestOptions = await axios({
             method: 'post',
