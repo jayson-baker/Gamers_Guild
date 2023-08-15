@@ -3,6 +3,25 @@ import {Link} from 'react-router-dom'
 import Placeholder from '../components/assets/Placeholder1.jpg'
 
 export default function MyGames() {
+    function getGames(){
+
+        const [games, setGames] = useState([]);
+        const url = 'http://localhost:3000/';
+    
+        useEffect(() => {
+            const getGames = async () => {
+                try {
+                    const response = await axios.get(`${url}past`);
+                    const allGames = response.data.games.allGames;
+                    setGames(allGames)
+                } catch (error) {
+                    console.error('Error getting games', error)
+                }
+            }
+            
+            getGames();
+        }, [])
+    }
     return (
     <div className="p-4 md:ml-64">
    <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">

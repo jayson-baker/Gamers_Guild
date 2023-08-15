@@ -14,6 +14,7 @@ const typeDefs = `
   
   type Post {
     _id: ID!
+    username: String!
     title: String!
     text: String!
     createdAt: String!
@@ -30,8 +31,9 @@ const typeDefs = `
   type Query {
     user: User
     posts: [Post!]!
-    getPost: Post
-    getPostByGame: Post
+    getPost(_id: ID!): Post
+    getGamesFromDB: Game
+    getPostByGame(game: ID!): Post
   }
   
   type Mutation {
@@ -45,8 +47,6 @@ const typeDefs = `
     addGameToDB(name: String!, image: String!): Game
     addGame(name: String!): Game
     deleteGame(id: ID!): User
-    addFriend(id: ID!): User
-    deleteFriend(id: ID!): User
     login(email: String!, password: String!): Auth
   }`;
 
