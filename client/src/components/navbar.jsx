@@ -3,10 +3,18 @@ import React, {useState} from 'react'
 import Logo from './assets/GamersGuildLogo.png'
 import { Link } from 'react-router-dom'
 import {FaBars, FaTimes} from 'react-icons/fa'
+import LoginModal from './LoginModal'
+import SignupModal from './SignupModal'
 
 const Navbar = () => {
   const [nav, setNav] = useState(false)
   const handleClick = () => setNav(!nav)
+
+  const [showModal, setShowModal] = useState(false);
+  const [showSignupModal, setShowSignupModal] = useState(false);
+  const handleOnClose = () => setShowModal(false);
+  const handleOnCloseSignup = () => setShowSignupModal(false);
+
   return (
     
     <div className="sticky top-0 w-full h-[80px] flex justify-between items-center px-4 bg-[#27374D] text-[#DDE6ED] border-2 border-{white}">
@@ -18,17 +26,15 @@ const Navbar = () => {
       <ul className='hidden md:flex md:items-baseline'>
         <li className="mr-4"><Link to="/">Home</Link></li>
         <li>
-          <button className="btn" onClick={()=>window.my_modal_3.showModal()}>Login</button>
-          <dialog id="my_modal_3" className="modal">
-            <form method="dialog" className="modal-box">
-              <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-              <h3 className="font-bold text-lg">Hello!</h3>
-              <p className="py-4">Press ESC key or click on ✕ button to close</p>
-            </form>
-          </dialog>
-      
+          <button className="btn" onClick={()=> setShowModal(true)}>Login</button>      
+        </li>
+        <li>
+          <button className="btn" onClick={()=> setShowSignupModal(true)}>Sign Up</button>      
         </li>
       </ul>
+
+      <LoginModal onClose={handleOnClose} visible={showModal}/>
+      <SignupModal onClose={handleOnCloseSignup} visible={showSignupModal}/>
 
       {/* Hamburger */}
       <div onClick={handleClick} className='md:hidden z-10'>
