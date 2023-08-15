@@ -14,7 +14,7 @@ const SideBar = () => {
         data-drawer-toggle="default-sidebar"
         aria-controls="default-sidebar"
         type="button"
-        className="inline-flex items-center p-2 mt-2 ml-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+        className="inline-flex items-center p-2 mt-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
       >
         <span className="sr-only">Open sidebar</span>
         <svg
@@ -33,7 +33,7 @@ const SideBar = () => {
       </button>
       <aside
         id="default-sidebar"
-        className="fixed left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
+        className="fixed left-0 z-40 w-64 h-screen transition-transform -translate-x-full md:translate-x-0"
         aria-label="Sidebar"
       >
         <div className="h-full px-3 py-4 overflow-y-auto bg-[#9DB2BF]">
@@ -57,7 +57,7 @@ const SideBar = () => {
                   src={Controller}
                   alt="controller"
                   style={{ width: "30px", marginRight: "10px" }}
-                />{" "}
+                />
                 My Games
               </Link>
             </li>
@@ -71,7 +71,7 @@ const SideBar = () => {
                   src={Post}
                   alt="post"
                   style={{ width: "30px", marginRight: "10px" }}
-                />{" "}
+                />
                 My Posts
               </Link>
             </li>
@@ -85,9 +85,12 @@ const SideBar = () => {
                   src={Comment}
                   alt="comment"
                   style={{ width: "30px", marginRight: "10px" }}
-                />{" "}
+                />
                 My Comments
               </Link>
+            </li>
+            <li>
+            <button data-modal-target="defaultModal" data-modal-toggle="defaultModal" type="button" className="w-full text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">New Post</button>
             </li>
           </ul>
         </div>

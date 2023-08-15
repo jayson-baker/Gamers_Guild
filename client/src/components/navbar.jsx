@@ -15,7 +15,7 @@ const Navbar = () => {
       </div>
 
       {/* NavBar Buttons */}
-      <ul className='hidden md:flex'>
+      <ul className='hidden md:flex md:items-baseline'>
         <li className="mr-4"><Link to="/">Home</Link></li>
         <li><Link to="/">Log In</Link></li>
       </ul>
