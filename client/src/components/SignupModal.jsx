@@ -16,15 +16,20 @@ export default function SignupModal({visible, onClose}) {
         <p className="text-center text-gray-700 mb-5">Sign up below!</p>
 
         <div className="flex flex-col">
+        <input
+            type="text"
+            className="border border-gray-700 p-2 rounded mb-5 text-black"
+            placeholder="Username"
+          />
           <input
             type="text"
             className="border border-gray-700 p-2 rounded mb-5 text-black"
-            placeholder="email@example.com"
+            placeholder="Email"
           />
           <input
             type="password"
             className="border border-gray-700 p-2 rounded mb-5 text-black"
-            placeholder="********"
+            placeholder="Password"
           />
         </div>
         <div className="text-center">
