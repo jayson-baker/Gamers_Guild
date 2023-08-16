@@ -10,6 +10,7 @@ const vaidateTwitch = async () => {
       }).then(function (response) {
         console.log(response.data);
       });
+      return response
   } catch (error) {
     console.error("Error validating token with Twitch", error);
   }
