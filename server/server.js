@@ -21,6 +21,7 @@ const server = new ApolloServer({
 const startApolloServer = async () => {
   await server.start();
 
+  app.use(routes);
   app.use(cors());
   app.use(express.urlencoded({ extended: false }));
   app.use(express.json());
@@ -35,7 +36,6 @@ const startApolloServer = async () => {
   );
 
   if (process.env.NODE_ENV === "production") {
-    app.use(routes);
     app.use(express.static(path.join(__dirname, "../client/dist")));
 
     app.get("*", (req, res) => {
