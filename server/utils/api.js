@@ -1,11 +1,16 @@
 const axios = require("axios").default;
 require("dotenv").config();
 
-const vaidateTwitch = async (res, req) => {
+const vaidateTwitch = async () => {
+
   try {
-    const response = await axios.get(
-      `https://id.twitch.tv/oauth2/token?client_id=${process.env.TWITCH_CLIENT_ID}&client_secret=${process.env.TWITCH_CLIENT_SECRET}&grant_type=client_credentials`
-    );
+      const response = await fetch("/apiKey", {
+      method: "POST",
+      body: JSON.stringify(askedGame),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
     if (response.ok) {
       console.log(response);

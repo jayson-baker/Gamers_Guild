@@ -45,7 +45,7 @@ export default function LoginModal({visible, onClose}) {
             </h1>
             <p className="text-center text-gray-700 mb-5">Sign in</p>
 
-          <div onSubmit={handleFormSubmit} className="flex flex-col">
+          <form onSubmit={handleFormSubmit} className="flex flex-col">
             <input
             name="email"
             type="text"
@@ -65,7 +65,7 @@ export default function LoginModal({visible, onClose}) {
             Sign in
           </button>
           </div>
-          </div>
+          </form>
         </div>
       </div>
     )

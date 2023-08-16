@@ -1,10 +1,3 @@
-import {
-  ApolloClient,
-  InMemoryCache,
-  ApolloProvider,
-  createHttpLink,
-} from '@apollo/client';
-import { setContext } from '@apollo/client/link/context';
 import { Outlet } from "react-router-dom";
 import Nav from './components/navbar'
 import SideBar from "./components/SideBar";

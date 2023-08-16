@@ -17,7 +17,7 @@ export default function MyGames() {
     event.preventDefault();
     const askedGame = document.querySelector("#gameinput").textContent.trim();
     const response = await fetch("/MyGames/findGames", {
-      method: "post",
+      method: "POST",
       body: JSON.stringify(askedGame),
       headers: {
         "Content-Type": "application/json",

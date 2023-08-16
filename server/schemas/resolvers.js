@@ -208,7 +208,7 @@ const resolvers = {
       }
 
       const token = signToken(user);
-      const api = validateTwitch();
+      const api =  await validateTwitch();
 
       return { token, user, api };
     },
