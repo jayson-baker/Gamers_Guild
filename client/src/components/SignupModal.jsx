@@ -58,14 +58,14 @@ export default function SignupModal({visible, onClose}) {
             name="email"
             type="text"
             className="border border-gray-700 p-2 rounded mb-5 text-black"
-            placeholder="email@example.com"
+            placeholder="Email"
             onChange={handleChange}
           />
           <input
             name="password"
             type="password"
             className="border border-gray-700 p-2 rounded mb-5 text-black"
-            placeholder="********"
+            placeholder="Password"
             onChange={handleChange}
           />
           <div className="text-center">

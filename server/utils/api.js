@@ -4,20 +4,12 @@ require("dotenv").config();
 const vaidateTwitch = async () => {
 
   try {
-      const response = await fetch("/apiKey", {
-      method: "POST",
-      body: JSON.stringify(askedGame),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-
-    if (response.ok) {
-      console.log(response);
-      return response;
-    } else {
-      alert("error twitch api key failed");
-    }
+      const response = await axios.request({
+        method: 'post',
+        url: `https://id.twitch.tv/oauth2/token?client_id=${process.env.TWITCH_CLIENT_ID}&client_secret=${process.env.TWITCH_CLIENT_SECRET}&grant_type=client_credentials`,
+      }).then(function (response) {
+        console.log(response.data);
+      });
   } catch (error) {
     console.error("Error validating token with Twitch", error);
   }
