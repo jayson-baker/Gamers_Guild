@@ -2,13 +2,13 @@ import React from "react";
 import { useState, useEffect } from "react";
 import  FindGameModal from '../components/FindGameModal'
 import { useQuery } from "@apollo/client";
-import { QUERY_ALL_Games} from "../utils/queries.js";
+import { QUERY_USER} from "../utils/queries.js";
 import MyGameCards from "../components/MyGameCards.jsx";
 
 
 
 export default function MyGames() {
-  const { data } = useQuery(QUERY_ALL_Games);
+  const { data } = useQuery(QUERY_USER);
     let games;
     if(data) {
       games = data.user.games;
