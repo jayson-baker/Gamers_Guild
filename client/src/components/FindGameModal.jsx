@@ -1,24 +1,32 @@
 import React from "react";
 import { useState } from "react";
+import { useQuery } from '@apollo/client';
 import Auth from "../utils/auth";
+import {QUERY_SEARCH_API} from "../utils/queries"
 
 export default function FindGameModal({ visible, onClose }) {
     const [formState, setFormState] = useState({ gameInput: '' });
+    const [getGame, { error }]= useQuery(QUERY_SEARCH_API);
     const createGameCard = async () => {
 
     }
+    const getStash = () =>{
+        // Saves api token to localStorage
+        const At = localStorage.getItem('Twitch');
+        const Tt = localStorage.getItem('TT');
+        return {At, Tt}
+      }
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-       // const key = Auth.getStash();
+        const key = getStash();
         try {
             const askedGame = formState.gameInput;
-            const response = await fetch("/MyGames/findGames", {
-                method: "POST",
-                body: { name: JSON.stringify(askedGame)},
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            });
+            console.log(askedGame)
+            const response = getGame({
+                variables: { name: askedGame, At:key.At,Tt:key.Tt },
+            })
+            
+            console.log(response)
             if (response.ok) {
                 console.log(response);
                 createGameCard();
@@ -42,7 +50,6 @@ export default function FindGameModal({ visible, onClose }) {
         if (e.target.id === "gameModal")
             onClose()
     }
-    console.log(visible)
     if (!visible) return null
     return (
         <div onClick={handleOnClose} id="gameModal" className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-center">

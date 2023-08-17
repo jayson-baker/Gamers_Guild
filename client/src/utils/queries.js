@@ -76,6 +76,13 @@ query geAPost($posts: [ID]!){
  }
 }
 `
+export const QUERY_SEARCH_API = gql`
+query searchApiGame($name: String!, $At: String!, $Tt: String!){
+  searchApiGame(name: $name, At: $At, Tt: $Tt){
+    id
+    }
+ }
+`
 
 export const QUERY_POSTS_BY_GAME = gql`
   query getPosts($game: ID) {

@@ -7,6 +7,9 @@ const typeDefs = `
     access_token: String
     token_type: String
   }
+  type Search {
+    id: ID
+  }
 
   type User {
     _id: ID
@@ -39,6 +42,7 @@ const typeDefs = `
     getGamesFromDB: Game
     getPostByGame(game: ID!): Post
     getApi: Key
+    searchApiGame(name:String!, At: String!, Tt: String!): Search
   }
   
   type Mutation {
