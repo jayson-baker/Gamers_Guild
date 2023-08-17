@@ -1,6 +1,7 @@
 const { User, Posts, Games } = require("../models");
 const { signToken, AuthenticationError } = require("../utils/auth");
 const validateTwitch = require("../utils/api");
+const apiCall = require("../utils/api");
 
 const resolvers = {
   Query: {
@@ -46,6 +47,11 @@ const resolvers = {
     getApi: async () => {
       const key =  await validateTwitch();
       return key
+    },
+    searchApiGame: async (name, At, Tt) => {
+      console.log(name, At,Tt);
+      const call =  await apiCall(name, At,Tt);
+      return call
     },
     //gets games saved to db to search for posts.
     getGamesFromDB: async (context) => {

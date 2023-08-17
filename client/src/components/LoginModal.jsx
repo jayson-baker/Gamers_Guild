@@ -11,28 +11,26 @@ import Auth from "../utils/auth";
 export default function LoginModal({visible, onClose}) {
   const [formState, setFormState] = useState({ email: '', password: '' });
   const [login, { error }] = useMutation(LOGIN);
-  const getKey = useQuery(QUERY_GETAPI)
-  console.log(getKey);
+  const getKey = useQuery(QUERY_GETAPI);
 
-  const stash=(idTwitch) =>{
+  const stash=(idTwitch, TT) =>{
     // Saves api token to localStorage
     localStorage.setItem('Twitch', idTwitch);
-    console.log(idTwitch)
+    localStorage.setItem('TT', TT);
   }
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    
+    //calls login function from db as well as gets a auth token from the twitch api and saves both tokens to local storge.
    try {
       let keys =  getKey;
-      console.log(keys);
       const mutationResponse = await login({
         variables: { email: formState.email, password: formState.password },
       });
       const token = mutationResponse.data.login.token;
-      const twitch = keys
-      console.log(mutationResponse);
-      stash(twitch);
+      const twitch = keys.data.data.getApi.access_token
+      const TT = keys.data.data.getApi.token_type
+      stash(twitch,TT);
       Auth.login(token);
       
     } catch (e) {
