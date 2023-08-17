@@ -1,48 +1,32 @@
 import { gql } from "@apollo/client";
 
 export const QUERY_USER = gql`
-  {
+  query User {
     user {
-      usernname
       posts {
-        _id
-        title
         createdAt
-        games {
-          _id
+        text
+        title
+        game {
           name
           image
         }
-      }
-      games {
-        _id
-        name
-        image
       }
     }
   }
 `;
 
 export const QUERY_ALL_POSTS = gql`
-  {
+  query Posts {
     posts {
-      _id
-      username
       title
-      createdAt
       text
       game {
-        _id
-        username
-        title
-        text
-        createdAt
-        game {
-          _id
-          name
-          image
-        }
+        name
+        image
       }
+      createdAt
+      username
     }
   }
 `;
