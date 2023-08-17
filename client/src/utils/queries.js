@@ -9,8 +9,8 @@ export const QUERY_USER = gql`
         title
         createdAt
         games {
-            _id
-            name
+          _id
+          name
         }
       }
       games {
@@ -35,20 +35,21 @@ export const QUERY_ALL_POSTS = gql`
         title
         text
         createdAt
-        game{
-            _id
-            name
-            image
+        game {
+          _id
+          name
+          image
         }
+      }
     }
   }
 `;
 export const QUERY_ALL_Games = gql`
   {
     games {
-        _id
-         name
-    }    
+      _id
+      name
+    }
   }
 `;
 
@@ -57,38 +58,37 @@ export const QUERY_GETAPI = gql`
     getApi {
       access_token
       token_type
-    } 
+    }
   }
 `;
 
 export const QUERY_POST = gql`
-query geAPost($posts: [ID]!){
- getPost(post: $posts){
-    _id
-    username
-    title
-    createdAt
-    game{
+  query geAPost($posts: [ID]!) {
+    getPost(post: $posts) {
+      _id
+      username
+      title
+      createdAt
+      game {
         _id
         name
-    }
-    replies{
+      }
+      replies {
         _id
         text
         username
         createdAt
       }
     }
- }
-}
-`
+  }
+`;
 export const QUERY_SEARCH_API = gql`
-query searchApiGame($name: String!, $At: String!, $Tt: String!){
-  searchApiGame(name: $name, At: $At, Tt: $Tt){
-    id
+  query searchApiGame($name: String!, $At: String!, $Tt: String!) {
+    searchApiGame(name: $name, At: $At, Tt: $Tt) {
+      id
     }
- }
-`
+  }
+`;
 
 export const QUERY_POSTS_BY_GAME = gql`
   query getPosts($game: ID) {
@@ -102,10 +102,11 @@ export const QUERY_POSTS_BY_GAME = gql`
         username
         title
         createdAt
-        game{
-            _id
-            name
+        game {
+          _id
+          name
         }
+      }
     }
   }
 `;
