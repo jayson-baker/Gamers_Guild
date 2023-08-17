@@ -1,7 +1,7 @@
 const { User, Posts, Games } = require("../models");
 const { signToken, AuthenticationError } = require("../utils/auth");
 const validateTwitch = require("../utils/api");
-const apiCall = require("../utils/api");
+const apiCall = require("../utils/api2");
 
 const resolvers = {
   Query: {

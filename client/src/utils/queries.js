@@ -87,7 +87,7 @@ export const QUERY_POST = gql`
   }
 `;
 export const QUERY_SEARCH_API = gql`
-query SearchApiGame($name: String!, $at: String!, $tt: String!){
+query searchApiGame($name: String!, $at: String!, $tt: String!){
   searchApiGame(name: $name, At: $At, Tt: $Tt){
     id
     name

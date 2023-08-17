@@ -8,6 +8,8 @@ import MyGameCards from "../components/MyGameCards.jsx";
 
 
 export default function MyGames() {
+  const [showModal, setShowModal] = useState(false);
+  const handleOnClose = () => setShowModal(false);
   const { data } = useQuery(QUERY_ALL_Games);
     let games;
     if(data) {
