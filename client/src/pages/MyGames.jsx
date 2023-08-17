@@ -13,9 +13,10 @@ export default function MyGames() {
     const { data } = useQuery(QUERY_USER);
     let games;
     console.log(data)
-  if(data) {
-    games = data.user.games;
+ if(data) {
+   games = data.user.games;
   }
+  console.log(showModal);
     return (
     <div className="p-4 md:ml-64">
    <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
@@ -25,11 +26,10 @@ export default function MyGames() {
          </p>
           <button
                 className="w-full text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
-                onClick={()=> setShowModal(true)}
-              >
+                onClick={()=> setShowModal(true)}>
                 Add Game
               </button>
-              <findGameModal onClose={handleOnClose} visible={showModal}/>
+              <FindGameModal onClose={handleOnClose} visible={showModal} />
               
       </div>
     <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4" id="gamesSec">

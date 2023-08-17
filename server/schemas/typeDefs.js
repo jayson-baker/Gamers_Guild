@@ -5,35 +5,36 @@ const typeDefs = `
   }
 
   type User {
-    _id: ID!
-    username: String!
-    email: String!
-    posts: [Post!]!
-    games: [Game!]!
+    _id: ID
+    username: String
+    email: String
+    posts: [Post!]
+    games: [Game!]
   }
   
   type Post {
-    _id: ID!
-    username: String!
-    title: String!
-    text: String!
-    createdAt: String!
-    game: Game!
-    replies: [Post!]!
+    _id: ID
+    username: String
+    title: String
+    text: String
+    createdAt: String
+    game: Game
+    replies: [Post!]
   }
   
   type Game {
     _id: ID!
-    name: String!
-    image: String!
+    name: String
+    image: String
   }
   
   type Query {
     user: User
-    posts: [Post!]!
+    posts: [Post!]
     getPost(_id: ID!): Post
     getGamesFromDB: Game
     getPostByGame(game: ID!): Post
+    getApi: Auth
   }
   
   type Mutation {

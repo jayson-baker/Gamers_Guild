@@ -35,8 +35,7 @@ module.exports = {
     return req;
   },
   signToken: async function ({ username, email, _id }) {
-    const apiKey = await vaidateTwitch();
-    const payload = { username, email, _id, apiKey };
+    const payload = { username, email, _id };
 
     return jwt.sign({ data: payload }, secret, { expiresIn: expiration });
   },

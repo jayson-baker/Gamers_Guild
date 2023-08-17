@@ -46,6 +46,16 @@ export const QUERY_ALL_Games = gql`
   }
 `;
 
+export const QUERY_GETAPI = gql`
+  {
+    key {
+      access_token
+      expires_in
+      token_type
+    } 
+  }
+`;
+
 export const QUERY_POST = gql`
 query geAPost($posts: [ID]!){
  getPost(post: $posts){

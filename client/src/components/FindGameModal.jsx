@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import Auth from "../../utils/auth";
 
 export default function FindGameModal({ visible, onClose }) {
     const [formState, setFormState] = useState({ gameInput: '' });
@@ -8,13 +9,12 @@ export default function FindGameModal({ visible, onClose }) {
     }
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-
+       // const key = Auth.getStash();
         try {
             const askedGame = formState.gameInput;
-            console.log(askedGame);
             const response = await fetch("/MyGames/findGames", {
                 method: "POST",
-                body: { name: JSON.stringify(askedGame) },
+                body: { name: JSON.stringify(askedGame)},
                 headers: {
                     "Content-Type": "application/json",
                 },
@@ -42,14 +42,11 @@ export default function FindGameModal({ visible, onClose }) {
         if (e.target.id === "gameModal")
             onClose()
     }
-
+    console.log(visible)
     if (!visible) return null
     return (
-        <div onClick={handleOnClose} id="gameModal" className="modal">
+        <div onClick={handleOnClose} id="gameModal" className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-center">
             <form onSubmit={handleFormSubmit} className="modal-box">
-                <button type="click" className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
-                    ✕
-                </button>
                 <div>
                     <label
                         htmlFor="small-input"
@@ -71,4 +68,4 @@ export default function FindGameModal({ visible, onClose }) {
             </form>
         </div>
     )
-};
+}
