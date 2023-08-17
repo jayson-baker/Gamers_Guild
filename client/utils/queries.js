@@ -46,7 +46,7 @@ export const QUERY_ALL_Games = gql`
 `;
 
 export const QUERY_POST = gql`
-query geAPost($posts: [ID]!){
+query getPost($posts: [ID]!){
  getPost(post: $posts){
     _id
     username

@@ -64,7 +64,7 @@ const SideBar = () => {
               <Link
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
                 onClick={handleClick}
-                to="/MyGames"
+                to="/ProfilePage"
               >
                 <img
                   src={ProfilePic}
@@ -92,7 +92,7 @@ const SideBar = () => {
               <Link
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
                 onClick={handleClick}
-                to="/"
+                to="/ProfilePage"
               >
                 <img
                   src={Post}
@@ -106,7 +106,7 @@ const SideBar = () => {
               <Link
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
                 onClick={handleClick}
-                to="/"
+                to="/games"
               >
                 <img
                   src={Comment}
