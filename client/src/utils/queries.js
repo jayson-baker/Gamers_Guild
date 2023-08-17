@@ -41,7 +41,7 @@ export const QUERY_ALL_Games = gql`
 `;
 
 export const QUERY_GETAPI = gql`
-  {
+  query GetApi {
     getApi {
       access_token
       token_type
@@ -71,10 +71,10 @@ export const QUERY_POST = gql`
   }
 `;
 export const QUERY_SEARCH_API = gql`
-query searchApiGame($name: String!, $at: String!, $tt: String!){
-  searchApiGame(name: $name, At: $At, Tt: $Tt){
-    id
-    name
+  query searchApiGame($name: String!, $at: String!, $tt: String!) {
+    searchApiGame(name: $name, At: $At, Tt: $Tt) {
+      id
+      name
     }
   }
 `;
