@@ -99,7 +99,7 @@ const resolvers = {
     },
     addPost: async (parent, args, context) => {
       if (context.user) {
-         await Posts.create(args, { new: true }).then(async ({ _id }) => {
+        await Posts.create(args, { new: true }).then(async ({ _id }) => {
           return await User.findByIdAndUpdate(
             { _id: context.user._id },
             { $push: { posts: _id } },

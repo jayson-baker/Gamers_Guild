@@ -23,10 +23,9 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_POST = gql`
-  mutation addPost($title: String!, $text: String!) {
-    addPost(title: $title, text: $text) {
-      title
-      text
+  mutation addPost($title: String!, $text: String!, $username: String!) {
+    addPost(title: $title, text: $text, username: $username) {
+      _id
     }
   }
 `;
