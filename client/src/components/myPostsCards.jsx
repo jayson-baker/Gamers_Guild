@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import { useQuery } from "@apollo/client";
-import { QUERY_ALL_POSTS, QUERY_POST } from "../utils/queries.js";
+import { QUERY_USER } from "../utils/queries.js";
 
 function MyPosts() {
-  const { data } = useQuery(QUERY_ALL_POSTS);
+  const { data } = useQuery(QUERY_USER);
   const posts = data?.posts
 
   return (

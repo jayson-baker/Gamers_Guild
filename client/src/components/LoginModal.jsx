@@ -28,8 +28,8 @@ export default function LoginModal({visible, onClose}) {
         variables: { email: formState.email, password: formState.password },
       });
       const token = mutationResponse.data.login.token;
-      const twitch = keys.data.data.getApi.access_token
-      const TT = keys.data.data.getApi.token_type
+      const twitch = keys.data.getApi.access_token
+      const TT = keys.data.getApi.token_type
       stash(twitch,TT);
       Auth.login(token);
       
