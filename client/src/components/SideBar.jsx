@@ -18,14 +18,16 @@ const SideBar = () => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-
+    const userName = Auth.getProfile().data.username;
+    console.log(userName);
     try {
       console.log(formState);
       const mutationResponse = await createPost({
-        variables: { title: formState.title, text: formState.text },
+        variables: { title: formState.title, text: formState.text, username: userName },
       });
       const token = mutationResponse.data.addPost.token;
       Auth.isTokenExpired(token);
+      window.location.reload();
     } catch (e) {
       console.log(e);
     }
@@ -77,18 +79,6 @@ const SideBar = () => {
           <div onClick={handleClick} className="md:hidden z-10">
       {sidebar ?  <FaTimes />: "hidden"}
       </div>
-          
-          <div className="container m-5">
-            <div className="searchInput">
-              <input
-                className="p-1 rounded"
-                type="text"
-                placeholder="Search Games"
-              />
-              {/* we can put auto complete section in result box? */}
-              <div className="resultBox"></div>
-            </div>
-          </div>
 
           <ul className="space-y-3 font-medium">
             <li>
@@ -117,34 +107,6 @@ const SideBar = () => {
                   style={{ width: "30px", marginRight: "10px" }}
                 />
                 My Games
-              </Link>
-            </li>
-            <li>
-              <Link
-                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-                onClick={handleClick}
-                to="/ProfilePage"
-              >
-                <img
-                  src={Post}
-                  alt="post"
-                  style={{ width: "30px", marginRight: "10px" }}
-                />
-                My Posts
-              </Link>
-            </li>
-            <li>
-              <Link
-                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-                onClick={handleClick}
-                to="/games"
-              >
-                <img
-                  src={Comment}
-                  alt="comment"
-                  style={{ width: "30px", marginRight: "10px" }}
-                />
-                My Comments
               </Link>
             </li>
             <li>

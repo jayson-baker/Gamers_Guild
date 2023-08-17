@@ -9,7 +9,7 @@ export default function HomePage() {
    <div className="flex justify-center flex-wrap p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
    <div className="flex flex-wrap md:w-3/4 w-full items-center justify-center h-48 mb-4 rounded bg-[#27374D] dark:bg-gray-800">
          <p className="text-4xl w-full text-center font-bold inline text-[#DDE6ED]">
-            Lets Talk Games!
+            Welcome to Gamers Guild! Lets Talk Games!
          </p>         
     </div>
     <UserPosts />
