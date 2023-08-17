@@ -2,21 +2,37 @@ import React from "react";
 import { useState, useEffect } from "react";
 import  FindGameModal from '../components/FindGameModal'
 import { useQuery } from "@apollo/client";
-import { QUERY_USER } from "../utils/queries.js";
+import { 
+          QUERY_ALL_Games} from "../utils/queries.js";
+import MyGameCards from "../components/MyGameCards.jsx";
 
 
 
 export default function MyGames() {
-  const [showModal, setShowModal] = useState(false);
-  const handleOnClose = () => setShowModal(false);
- 
-    const { data } = useQuery(QUERY_USER);
+    const { data } = useQuery(QUERY_ALL_Games);
     let games;
     console.log(data)
- if(data) {
-   games = data.user.games;
+  if(data) {
+    games = data.user.games;
   }
-  console.log(showModal);
+  const addGame = async (event) => {
+    event.preventDefault();
+    const askedGame = document.querySelector("#gameinput").textContent.trim();
+    const response = await fetch("/MyGames/findGames", {
+      method: "POST",
+      body: JSON.stringify(askedGame),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (response.ok) {
+      console.log(response)
+      console.log("Game Added");
+    } else {
+      alert("Failed to Find Game");
+    }
+  }
+
     return (
     <div className="p-4 md:ml-64">
    <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
@@ -32,7 +48,7 @@ export default function MyGames() {
               <FindGameModal onClose={handleOnClose} visible={showModal} />
               
       </div>
-    <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4" id="gamesSec">
+    <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
       {games ? (
         <>
     {games.map((game) => (
