@@ -3,7 +3,7 @@ import { gql } from '@apollo/client';
 export const QUERY_USER = gql`
   {
     user {
-      usernname
+      username
       posts{
         _id
         title
@@ -39,8 +39,8 @@ export const QUERY_ALL_POSTS = gql`
 export const QUERY_ALL_Games = gql`
   {
     games {
-        _id
          name
+         image
     }    
   }
 `;

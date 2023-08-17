@@ -9,8 +9,9 @@ export const QUERY_USER = gql`
         title
         createdAt
         game {
-            _id
-            name
+          _id
+          name
+          image
         }
       }
       games {
@@ -29,8 +30,9 @@ export const QUERY_ALL_POSTS = gql`
         username
         title
         createdAt
+        text
         game{
-            _id
+          _id
             name
             image
         }
@@ -40,22 +42,25 @@ export const QUERY_ALL_POSTS = gql`
 export const QUERY_ALL_Games = gql`
   {
     games {
-        _id
+      _id
          name
+         image
+
     }    
   }
 `;
 
 export const QUERY_POST = gql`
-query geAPost($posts: [ID]!){
+query getPost($posts: [ID]!){
  getPost(post: $posts){
     _id
     username
     title
     createdAt
     game{
-        _id
+      _id
         name
+        image
     }
     replies{
         _id
@@ -77,6 +82,7 @@ export const QUERY_POSTS_BY_GAME = gql`
         game{
             _id
             name
+            image
         }
     }
   }

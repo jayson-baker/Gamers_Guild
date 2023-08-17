@@ -1,18 +1,19 @@
 import { useState, useEffect } from "react";
 import {Link} from 'react-router-dom'
 import { useQuery } from "@apollo/client";
-import { QUERY_USER,
-          QUERY_ALL_Games } from "../utils/queries.js";
+import { 
+          QUERY_ALL_Games} from "../utils/queries.js";
+import MyGameCards from "../components/MyGameCards.jsx";
 
 
 
 export default function MyGames() {
-    const { data } = useQuery(QUERY_ALL_Games);
-    let games;
-    console.log(data)
-  if(data) {
-    games = data.user.games;
-  }
+  //   const { data } = useQuery(QUERY_ALL_Games);
+  //   let games;
+  //   console.log(data)
+  // if(data) {
+  //   games = data.user.games;
+  // }
   const addGame = async (event) => {
     event.preventDefault();
     const askedGame = document.querySelector("#gameinput").textContent.trim();
@@ -72,13 +73,7 @@ export default function MyGames() {
               </dialog>
       </div>
     <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
-      {games ? (
-        <>
-    {games.map((game) => (
-                <Cards game={game.name} key={game._id} ></Cards>
-            ))};
-            </>
-            ): null}
+      <MyGameCards />
       </div>
    </div>
 </div>
