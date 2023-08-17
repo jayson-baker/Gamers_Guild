@@ -18,8 +18,8 @@ const apiCall = async (searched, At,  ) => {
       .then( async function (response) {
           return response.data[0]
         });
-        let cover = requestOptions.cover
-      /* const getImage = setTimeout(async () => {
+         /* let cover = requestOptions.cover
+     const getImage = setTimeout(async () => {
             const image = await getCover(TK, cover);
             console.log(image);
             return image

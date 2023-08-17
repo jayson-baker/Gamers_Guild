@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useQuery } from "@apollo/client";
 import { QUERY_ALL_Games}  from "../utils/queries.js";
 
-function MyGameCards(game) {
+function MyGameCards({game}) {
     return (
                 <>
                         <Link to={`/games/${game._id}`} key={game._id} value={game._id}>

@@ -144,12 +144,12 @@ const resolvers = {
     addGameToDB: async (parent, args) => {
       const game = await Games.create(args);
 
-      return game;
+      return game._id;
     },
     addGame: async (parent, { id }, context) => {
       if (context.user) {
         return await Games.findByID(id, { new: true }).then(async ({ _id }) => {
-          return await User.findByIdAndUpdate(
+           await User.findByIdAndUpdate(
             { _id: context.user._id },
             { $push: { games: _id } },
             { new: true }

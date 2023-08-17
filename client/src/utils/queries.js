@@ -37,7 +37,6 @@ export const QUERY_ALL_POSTS = gql`
       text
       game {
         name
-        image
       }
       createdAt
       username
