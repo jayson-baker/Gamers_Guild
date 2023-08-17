@@ -28,3 +28,15 @@ import apicalypse from 'apicalypse';
             
 
     }
+
+   const stash=(idTwitch) =>{
+        // Saves api token to localStorage
+        localStorage.setItem('Twitch', idTwitch);
+        console.log(idTwitch)
+      }
+     const getStash = () =>{
+        // Saves api token to localStorage
+        return localStorage.getItem('Twitch');
+      }
+
+      module.exports =  [stash, getStash]
