@@ -1,4 +1,5 @@
 const typeDefs = `
+
   type Auth {
     token: ID
     user: User
@@ -33,7 +34,7 @@ const typeDefs = `
   type Game {
     _id: ID!
     name: String
-    image: String
+    url: String
   }
   
   type Query {

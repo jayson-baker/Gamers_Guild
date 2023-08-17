@@ -2,35 +2,37 @@ import React from "react";
 import { useState } from "react";
 import { useLazyQuery } from '@apollo/client';
 import {QUERY_SEARCH_API} from "../utils/queries"
+import MyGameCards from "../components/MyGameCards.jsx";
 
 export default function FindGameModal({ visible, onClose }) {
     const [formState, setFormState] = useState({ gameInput: '' });
     const [getGame ,{ loading, error, data }] = useLazyQuery(QUERY_SEARCH_API);
-    const createGameCard = async () => {
-
+    const createGameCard = async (game) => {
+        return <MyGameCards game={game.name} key={game._id} ></MyGameCards>
     }
     const getStash = () =>{
-        // Saves api token to localStorage
-        const At = localStorage.getItem('Twitch');
-        const Tt = localStorage.getItem('TT');
-        return {At, Tt}
+        // gets temp api token from localStorage
+        const at = localStorage.getItem('Twitch');
+        const tt = localStorage.getItem('TT');
+        return {at, tt}
       }
     const handleFormSubmit = async (event) => {
         event.preventDefault();
         const key = getStash();
+        console.log(key)
         try {
             const askedGame = formState.gameInput;
-            console.log(askedGame)
+            console.log({name: askedGame, at:key.at,tt:key.tt})
             const response  = await getGame( {
-                variables: { name: askedGame, At:key.At,Tt:key.Tt }
+                variables: { name: askedGame, at:key.at,tt:key.tt }
             })
             
-            //console.log(response)
+            console.log(response)
             if (response.ok) {
                 console.log(response);
-                createGameCard();
+                createGameCard(response);
             } else {
-                alert("Failed to Find Game");
+              //  alert("Failed to Find Game");
                 return
             }
         } catch (e) {

@@ -48,15 +48,13 @@ const resolvers = {
       const key = await validateTwitch();
       return key;
     },
+    //takes the search perams and gets game id and image
     searchApiGame: async (parent, args, ) => {
-      console.log("call made");
       let searched = args.name
       let ath = args.at
       const call =  await apiCall(searched, ath);
       console.log(call);
-      let id = call.data.id
-      let gname = call.data.name
-      return {id,gname}
+      return call
     },
     //gets games saved to db to search for posts.
     getGamesFromDB: async (context) => {
@@ -101,7 +99,7 @@ const resolvers = {
     },
     addPost: async (parent, args, context) => {
       if (context.user) {
-        return await Posts.create(args, { new: true }).then(async ({ _id }) => {
+         await Posts.create(args, { new: true }).then(async ({ _id }) => {
           return await User.findByIdAndUpdate(
             { _id: context.user._id },
             { $push: { posts: _id } },

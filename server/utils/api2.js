@@ -19,17 +19,17 @@ const apiCall = async (searched, At,  ) => {
           return response.data[0]
         });
         let cover = requestOptions.cover
-        console.log(cover)
-       const getImage = setTimeout(async () => {
+      /* const getImage = setTimeout(async () => {
             const image = await getCover(TK, cover);
             console.log(image);
             return image
-        }, 500)
+        }, 300)
         console.log(requestOptions);
+        let url = getImage
+        console.log({id, name, url})*/
         let id = requestOptions.id;
         let name = requestOptions.name;
-        let image = getImage
-        return {id, name, image}
+        return {id, name }
   } catch (error) {
     console.error("Error validating token with Twitch", error);
   }
@@ -47,7 +47,9 @@ const apiCall = async (searched, At,  ) => {
       };
     const image = await axios.request(cover)
     .then( async function (response) {
-        return response.data[0].url
+        const url = JSON.stringify(response.data[0].url).split("//").pop()
+       const fix = JSON.stringify(url);
+        return fix
       });
   }
   
