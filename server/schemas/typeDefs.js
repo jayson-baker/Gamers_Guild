@@ -50,7 +50,7 @@ const typeDefs = `
     addUser(username: String!, email: String!, password: String!): Auth
     updateUser(username: String, email: String): User
     updatePost(id: ID!, content: String): Post
-    addPost(content: String!, gameId: ID!): Post
+    addPost(title: String!, text: String!): Post
     deletePost(id: ID!): User
     addReply(post: ID!, content: String!): Post
     deleteReply(post: ID!, reply: ID!): Post

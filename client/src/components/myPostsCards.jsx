@@ -6,7 +6,6 @@ import { QUERY_USER } from "../utils/queries.js";
 function MyPosts() {
   const userToken = localStorage.getItem('id_token');
   const { data } = useQuery(QUERY_USER, { context: { headers: { "Authorization": `Bearer ${userToken}` } }});
-  console.log(data);
   const posts = data?.user.posts || [];
  
   return (

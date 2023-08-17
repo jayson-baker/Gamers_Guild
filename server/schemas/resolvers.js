@@ -6,8 +6,8 @@ const apiCall = require("../utils/api2");
 const resolvers = {
   Query: {
     // gets user information, including post and games for viewing profiles.
-    user: async (parent, args,context) => {
-      console.log(context.user)
+    user: async (parent, args, context) => {
+      console.log(context.user);
       if (context.user) {
         const user = await User.findById(context.user._id)
           .populate({
@@ -45,15 +45,15 @@ const resolvers = {
       return post;
     },
     getApi: async () => {
-      const key =  await validateTwitch();
-      return key
+      const key = await validateTwitch();
+      return key;
     },
     searchApiGame: async (name, At, Tt) => {
       console.log("call made");
-      console.log(await apiCall(name, At,Tt));
-      const call =  await apiCall(name, At,Tt);
+      console.log(await apiCall(name, At, Tt));
+      const call = await apiCall(name, At, Tt);
       console.log(call);
-      return call
+      return call;
     },
     //gets games saved to db to search for posts.
     getGamesFromDB: async (context) => {
@@ -201,7 +201,7 @@ const resolvers = {
       }
       throw AuthenticationError;
     },*/
-    
+
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 
@@ -214,9 +214,9 @@ const resolvers = {
       if (!correctPw) {
         throw AuthenticationError;
       }
-      const token = signToken(user);  
+      const token = signToken(user);
 
-      return { token, user};
+      return { token, user };
     },
   },
 };
