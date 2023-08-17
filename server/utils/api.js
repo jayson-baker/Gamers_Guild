@@ -8,7 +8,7 @@ const vaidateTwitch = async () => {
         method: 'post',
         url: `https://id.twitch.tv/oauth2/token?client_id=${process.env.TWITCH_CLIENT_ID}&client_secret=${process.env.TWITCH_CLIENT_SECRET}&grant_type=client_credentials`,
       }).then(function (response) {
-        console.log(response.data);
+        return response.data
       });
       return response
   } catch (error) {

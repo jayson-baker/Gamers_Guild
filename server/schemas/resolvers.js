@@ -5,7 +5,8 @@ const validateTwitch = require("../utils/api");
 const resolvers = {
   Query: {
     // gets user information, including post and games for viewing profiles.
-    user: async (context) => {
+    user: async (parent, args,context) => {
+      console.log(context.user)
       if (context.user) {
         const user = await User.findById(context.user._id)
           .populate({
@@ -15,15 +16,10 @@ const resolvers = {
           .populate({
             path: "games",
             select: "-__v",
-          })
-          .populate({
-            path: "friends",
-            select: "-__v",
           });
         user.posts.sort((a, b) => b.purchaseDate - a.purchaseDate);
         return user;
       }
-
       throw AuthenticationError;
     },
     //gets all posts
@@ -46,6 +42,10 @@ const resolvers = {
           select: "-__v",
         });
       return post;
+    },
+    getApi: async () => {
+      const key =  await validateTwitch();
+      return key
     },
     //gets games saved to db to search for posts.
     getGamesFromDB: async (context) => {
@@ -193,7 +193,7 @@ const resolvers = {
       }
       throw AuthenticationError;
     },*/
-
+    
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 
@@ -206,11 +206,9 @@ const resolvers = {
       if (!correctPw) {
         throw AuthenticationError;
       }
+      const token = signToken(user);  
 
-      const token = signToken(user);
-      const api =  await validateTwitch();
-
-      return { token, user, api };
+      return { token, user};
     },
   },
 };

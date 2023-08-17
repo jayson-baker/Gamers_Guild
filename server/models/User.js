@@ -36,10 +36,10 @@ const userSchema = new Schema({
       virtuals:true,
     getters: true,
   }});
-  userSchema
+ /* userSchema
   .virtual('friendCount').get(function () {
     return this.friends.length;
-  })
+  })*/
 // set up pre-save middleware to create password
 userSchema.pre('save', async function(next) {
   if (this.isNew || this.isModified('password')) {

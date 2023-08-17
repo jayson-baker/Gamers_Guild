@@ -8,7 +8,7 @@ export const QUERY_USER = gql`
         _id
         title
         createdAt
-        game {
+        games {
           _id
           name
           image
@@ -29,6 +29,7 @@ export const QUERY_ALL_POSTS = gql`
         _id
         username
         title
+        text
         createdAt
         text
         game{
@@ -47,6 +48,15 @@ export const QUERY_ALL_Games = gql`
          image
 
     }    
+  }
+`;
+
+export const QUERY_GETAPI = gql`
+  {
+    getApi {
+      access_token
+      token_type
+    } 
   }
 `;
 
