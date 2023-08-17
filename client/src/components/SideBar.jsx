@@ -4,6 +4,7 @@ import Comment from "./assets/comments.png";
 import Post from "./assets/post.png";
 import ProfilePic from "./assets/user.png";
 import { Link } from "react-router-dom";
+import {FaBars, FaTimes} from 'react-icons/fa'
 
 const SideBar = () => {
   const [sidebar, setSidebar] = useState(false);
@@ -15,7 +16,8 @@ const SideBar = () => {
         data-drawer-toggle="default-sidebar"
         aria-controls="default-sidebar"
         type="button"
-        className="inline-flex items-center p-2 mt-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+        onClick={handleClick}
+        className={sidebar ? "hidden": "inline-flex items-center p-2 mt-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"}
       >
         <span className="sr-only">Open sidebar</span>
         <svg
@@ -32,12 +34,19 @@ const SideBar = () => {
           ></path>
         </svg>
       </button>
+      {/* <div onClick={handleClick} className="md:hidden z-10">
+      {!sidebar ? <FaBars/> : <FaTimes style={{width: '40px'}}/>}
+      </div> */}
       <aside
         id="default-sidebar"
-        className="fixed left-0 z-40 w-64 h-screen transition-transform -translate-x-full md:translate-x-0"
+        className={!sidebar ? "hidden md:block md:fixed md:left-0 md:z-40 md:w-64 h-screen" :" fixed left-0 z-40 w-64 h-screen"}
         aria-label="Sidebar"
       >
         <div className="h-full px-3 py-4 overflow-y-auto bg-[#9DB2BF]">
+          <div onClick={handleClick} className="md:hidden z-10">
+      {sidebar ?  <FaTimes />: "hidden"}
+      </div>
+          
           <div className="container m-5">
             <div className="searchInput">
               <input
@@ -55,7 +64,7 @@ const SideBar = () => {
               <Link
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
                 onClick={handleClick}
-                to="/MyGames"
+                to="/ProfilePage"
               >
                 <img
                   src={ProfilePic}
@@ -83,7 +92,7 @@ const SideBar = () => {
               <Link
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
                 onClick={handleClick}
-                to="/"
+                to="/ProfilePage"
               >
                 <img
                   src={Post}
@@ -97,7 +106,7 @@ const SideBar = () => {
               <Link
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
                 onClick={handleClick}
-                to="/"
+                to="/games"
               >
                 <img
                   src={Comment}
