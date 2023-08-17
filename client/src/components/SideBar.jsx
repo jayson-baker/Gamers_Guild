@@ -5,10 +5,41 @@ import Post from "./assets/post.png";
 import ProfilePic from "./assets/user.png";
 import { Link } from "react-router-dom";
 import {FaBars, FaTimes} from 'react-icons/fa'
+import { useMutation } from "@apollo/client";
+import { ADD_POST } from "../utils/mutations";
+import Auth from "../utils/auth";
 
 const SideBar = () => {
   const [sidebar, setSidebar] = useState(false);
   const handleClick = () => setSidebar(!sidebar);
+
+  const [formState, setFormState] = useState({ title: "", text: "" });
+  const [createPost, { error }] = useMutation(ADD_POST, {context: { headers: { authorization: Auth.getToken() } }});
+
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      console.log(formState);
+      const mutationResponse = await createPost({
+        variables: { title: formState.title, text: formState.text },
+      });
+      const token = mutationResponse.data.addPost.token;
+      Auth.isTokenExpired(token);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    console.log(name, value)
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
+  }; 
+
   return (
     <>
       <button
@@ -125,7 +156,7 @@ const SideBar = () => {
                 New Post
               </button>
               <dialog id="my_modal_3" className="modal">
-                <form method="dialog" className="modal-box">
+                <form onSubmit={handleFormSubmit} method="dialog" className="modal-box">
                   <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
                     ✕
                   </button>
@@ -137,9 +168,11 @@ const SideBar = () => {
                       Post title:
                     </label>
                     <input
+                      name="title"
                       type="text"
                       id="small-input"
-                      className="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      className="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      onChange={handleChange}
                     />
                   </div>
                   <div className="mb-6">
@@ -150,15 +183,17 @@ const SideBar = () => {
                       Post:
                     </label>
                     <input
+                      name="text"
                       type="text"
                       id="large-input"
-                      className="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      className="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      onChange={handleChange}
                     />
                   </div>
 
                   <button
+                    type="submit"
                     className="btn btn-outline btn-success"
-                    onClick={() => {}}
                   >
                     Post
                   </button>

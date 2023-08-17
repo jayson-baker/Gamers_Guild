@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link } from 'react-router-dom';
 import { useQuery } from "@apollo/client";
 import { QUERY_USER } from "../utils/queries.js";
 
 function MyPosts() {
-  const { data } = useQuery(QUERY_USER);
-  const posts = data?.posts
-
+  const userToken = localStorage.getItem('id_token');
+  const { data } = useQuery(QUERY_USER, { context: { headers: { "Authorization": `Bearer ${userToken}` } }});
+  const posts = data?.user.posts || [];
+ 
   return (
     <>
     <div className="flex justify-center flex-wrap p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
@@ -19,7 +20,7 @@ function MyPosts() {
       {posts ? (
         <>
       {posts.map((post) => (
-            <Link to={`/post/${post._id}`} key={post._id} value={post._id}>
+            <Link to={`/post/${post._id}`} key={`${Math.random()*100}${post._id}`} value={post._id}>
 
               <div className="flex justify-center flex-wrap p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
                 <div className="flex md:w-3/4 w-full justify-center mb-6 rounded py-2.5 bg-[#27374D] flex-wrap md:flex-nowrap">

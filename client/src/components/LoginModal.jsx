@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { useLazyQuery } from '@apollo/client';
 import { LOGIN } from "../utils/mutations";
-import { QUERY_GETAPI, QUERY_USER  } from "../utils/queries.js";
+import { QUERY_GETAPI } from "../utils/queries.js";
 import Auth from "../utils/auth";
 
 

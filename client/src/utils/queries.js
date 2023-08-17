@@ -41,7 +41,7 @@ export const QUERY_ALL_Games = gql`
 `;
 
 export const QUERY_GETAPI = gql`
-  {
+  query GetApi {
     getApi {
       access_token
       token_type
