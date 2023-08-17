@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import { useQuery } from "@apollo/client";
-import { QUERY_USER } from "../utils/queries.js";
+import { QUERY_ALL_POSTS, QUERY_POST } from "../utils/queries.js";
 
-function myPosts() {
-  const { data } = useQuery(QUERY_USER);
-  let posts;
+function MyPosts() {
+  const { data } = useQuery(QUERY_ALL_POSTS);
+  let posts = useQuery(QUERY_POST);
+  console.log(posts)
   //if (loading) return <p>loading...</p>;
  // if (error) return <pr>Error: {error.message}</pr>;
 if(data) {
@@ -32,4 +33,4 @@ if(data) {
   );
 }
 
-export default myPosts;
+export default MyPosts;
