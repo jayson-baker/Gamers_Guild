@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import Auth from "../../utils/auth";
+import Auth from "../utils/auth";
 
 export default function FindGameModal({ visible, onClose }) {
     const [formState, setFormState] = useState({ gameInput: '' });

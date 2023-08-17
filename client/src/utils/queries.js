@@ -8,7 +8,7 @@ export const QUERY_USER = gql`
         _id
         title
         createdAt
-        game {
+        games {
             _id
             name
         }
@@ -28,6 +28,7 @@ export const QUERY_ALL_POSTS = gql`
         _id
         username
         title
+        text
         createdAt
         game{
             _id
@@ -48,9 +49,8 @@ export const QUERY_ALL_Games = gql`
 
 export const QUERY_GETAPI = gql`
   {
-    key {
+    getApi {
       access_token
-      expires_in
       token_type
     } 
   }

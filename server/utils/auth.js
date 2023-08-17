@@ -1,7 +1,6 @@
 const { GraphQLError } = require('graphql');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
-const vaidateTwitch = require('./api')
 
 const secret = process.env.SVST;
 const expiration = '2h';

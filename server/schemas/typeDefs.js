@@ -3,6 +3,10 @@ const typeDefs = `
     token: ID
     user: User
   }
+  type Key {
+    access_token: String
+    token_type: String
+  }
 
   type User {
     _id: ID
@@ -34,7 +38,7 @@ const typeDefs = `
     getPost(_id: ID!): Post
     getGamesFromDB: Game
     getPostByGame(game: ID!): Post
-    getApi: Auth
+    getApi: Key
   }
   
   type Mutation {

@@ -16,10 +16,6 @@ const resolvers = {
           .populate({
             path: "games",
             select: "-__v",
-          })
-          .populate({
-            path: "friends",
-            select: "-__v",
           });
         user.posts.sort((a, b) => b.purchaseDate - a.purchaseDate);
         return user;
