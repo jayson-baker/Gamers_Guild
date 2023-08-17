@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import {FaBars, FaTimes} from 'react-icons/fa'
 import LoginModal from './LoginModal'
 import SignupModal from './SignupModal'
+import Auth from '../utils/auth'
 
 const Navbar = () => {
   const [nav, setNav] = useState(false)
@@ -15,6 +16,8 @@ const Navbar = () => {
   const handleOnClose = () => setShowModal(false);
   const handleOnCloseSignup = () => setShowSignupModal(false);
 
+  const isLoggedIn = localStorage.getItem('id_token');
+  
   return (
     
     <div className="sticky top-0 w-full h-[80px] flex justify-between items-center px-4 bg-[#27374D] text-[#DDE6ED] border-2 border-{white}">
@@ -24,13 +27,17 @@ const Navbar = () => {
 
       {/* NavBar Buttons */}
       <ul className='hidden md:flex md:items-baseline'>
-        <li className="mr-4"><Link to="/">Home</Link></li>
+        <li className="btn mr-4"><Link to="/">Home</Link></li>
+        {isLoggedIn ? <li><button onClick={Auth.logout} className="btn">Logout</button></li> : 
+        <>
         <li>
           <button className="btn" onClick={()=> setShowModal(true)}>Login</button>      
         </li>
         <li>
           <button className="btn" onClick={()=> setShowSignupModal(true)}>Sign Up</button>      
         </li>
+        </>}     
+        
       </ul>
 
       <LoginModal onClose={handleOnClose} visible={showModal}/>
