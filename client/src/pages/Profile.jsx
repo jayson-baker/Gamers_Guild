@@ -7,8 +7,13 @@ import MyPosts from '../components/MyPostsCards'
 function Profile() {
 
     return (
-    <div className="md:ml-64">
+    <div>
+        <div className="bg-[#27374D] md:ml-64">
+            Profile Div
+        </div>
+        <div>
         <MyPosts/>
+        </div>
     </div> 
     )
 }
