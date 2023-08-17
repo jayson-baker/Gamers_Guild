@@ -43,7 +43,7 @@ const typeDefs = `
     getGamesFromDB: Game
     getPostByGame(game: ID!): Post
     getApi: Key
-    searchApiGame(name:String!, At: String!, Tt: String!): Search
+    searchApiGame(name: String!, at: String!, tt: String!): Search
   }
   
   type Mutation {

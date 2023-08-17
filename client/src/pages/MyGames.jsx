@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import  FindGameModal from '../components/FindGameModal'
 import { useQuery } from "@apollo/client";
-import { QUERY_USER} from "../utils/queries.js";
+import { QUERY_USER,QUERY_ALL_Games } from "../utils/queries.js";
 import MyGameCards from "../components/MyGameCards.jsx";
 
 

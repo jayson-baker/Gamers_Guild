@@ -48,12 +48,15 @@ const resolvers = {
       const key =  await validateTwitch();
       return key
     },
-    searchApiGame: async (name, At, Tt) => {
+    searchApiGame: async (parent, args, ) => {
       console.log("call made");
-      console.log(await apiCall(name, At,Tt));
-      const call =  await apiCall(name, At,Tt);
-      console.log(call);
-      return call
+      let searched = args.name
+      let ath = args.at
+      const call =  await apiCall(searched, ath);
+      //console.log(call);
+      //let id = call.data.id
+      //let gname = call.data.name
+     // return {id,gname}
     },
     //gets games saved to db to search for posts.
     getGamesFromDB: async (context) => {
