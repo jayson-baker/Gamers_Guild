@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useMutation } from "@apollo/client";
-import { useQuery } from '@apollo/client';
+import { useLazyQuery } from '@apollo/client';
 import { LOGIN } from "../utils/mutations";
 import { QUERY_GETAPI, QUERY_USER  } from "../utils/queries.js";
 import Auth from "../utils/auth";
@@ -11,7 +11,7 @@ import Auth from "../utils/auth";
 export default function LoginModal({visible, onClose}) {
   const [formState, setFormState] = useState({ email: '', password: '' });
   const [login, { error }] = useMutation(LOGIN);
-  const getKey = useQuery(QUERY_GETAPI);
+  const [getKey ,{ loading, data }] = useLazyQuery(QUERY_GETAPI);
 
   const stash=(idTwitch, TT) =>{
     // Saves api token to localStorage
@@ -23,14 +23,14 @@ export default function LoginModal({visible, onClose}) {
     event.preventDefault();
     //calls login function from db as well as gets a auth token from the twitch api and saves both tokens to local storge.
    try {
-      let keys =  getKey;
+      let keys =  await getKey();
+      let twitch = keys.data.getApi.access_token
+      let TT = keys.data.getApi.token_type
+      stash(twitch,TT); 
       const mutationResponse = await login({
         variables: { email: formState.email, password: formState.password },
       });
       const token = mutationResponse.data.login.token;
-      const twitch = keys.data.getApi.access_token
-      const TT = keys.data.getApi.token_type
-      stash(twitch,TT);
       Auth.login(token);
       
     } catch (e) {

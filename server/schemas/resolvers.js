@@ -49,8 +49,10 @@ const resolvers = {
       return key
     },
     searchApiGame: async (name, At, Tt) => {
-      console.log(name, At,Tt);
+      console.log("call made");
+      console.log(await apiCall(name, At,Tt));
       const call =  await apiCall(name, At,Tt);
+      console.log(call);
       return call
     },
     //gets games saved to db to search for posts.

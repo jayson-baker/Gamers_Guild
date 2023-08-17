@@ -14,15 +14,8 @@ export default function MyGames() {
       games = data.user.games;
   }
   const addGame = async (event) => {
-    event.preventDefault();
-    const askedGame = document.querySelector("#gameinput").textContent.trim();
-    const response = await fetch("/MyGames/findGames", {
-      method: "POST",
-      body: JSON.stringify(askedGame),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+   
+  ;
     if (response.ok) {
       console.log(response)
       console.log("Game Added");

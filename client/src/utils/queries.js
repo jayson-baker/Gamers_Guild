@@ -71,9 +71,10 @@ export const QUERY_POST = gql`
   }
 `;
 export const QUERY_SEARCH_API = gql`
-  query searchApiGame($name: String!, $At: String!, $Tt: String!) {
-    searchApiGame(name: $name, At: $At, Tt: $Tt) {
-      id
+query SearchApiGame($name: String!, $at: String!, $tt: String!){
+  searchApiGame(name: $name, At: $At, Tt: $Tt){
+    id
+    name
     }
   }
 `;

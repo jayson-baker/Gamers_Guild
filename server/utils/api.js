@@ -18,19 +18,19 @@ const vaidateTwitch = async () => {
 
 const apiCall = async (req, res) => {
   try {
-  
-    const requestOptions = await axios.request({
-        method: 'post',
-        url: 'https://api.igdb.com/v4/search',
-        headers: {
-            'Accept': 'application/json',
-            "Client-ID": process.env.TWITCH_CLIENT_ID,
-            'Authorization': `${req.body.key.token_type}  ${req.body.Key.access_token}` 
-        },
-        data: {
-            name: `${req,body.name}`
-          },
-      }).then(function (response) {
+  console.log(req.body)
+  const options = {
+    method: 'POST',
+    url: 'https://api.igdb.com/v4/games',
+    headers: {
+      'Content-Type': 'application/json',
+      'Client-ID': 'dyt0e36nxi2ypu2jzjx0vn65psi0ff',
+      Authorization: 'Bearer 3n1rilphqz8tp7cvncof3fik6oxymr'
+    },
+    data: `\nfields id,name,cover,rating;\nwhere name ~ "${req.body.name}"*;\nsort id asc;\nlimit 10;"`
+  };
+    const requestOptions = await axios.request(options)
+    .then(function (response) {
         return response.data
       });
       console.log(requestOptions);
@@ -41,3 +41,4 @@ const apiCall = async (req, res) => {
 }
 
 module.exports = vaidateTwitch, apiCall;
+
