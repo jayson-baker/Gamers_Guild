@@ -9,6 +9,7 @@ const typeDefs = `
   }
   type Search {
     id: ID
+    name: String
   }
 
   type User {

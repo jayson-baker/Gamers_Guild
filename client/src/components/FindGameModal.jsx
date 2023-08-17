@@ -1,12 +1,11 @@
 import React from "react";
 import { useState } from "react";
-import { useQuery } from '@apollo/client';
-import Auth from "../utils/auth";
+import { useLazyQuery } from '@apollo/client';
 import {QUERY_SEARCH_API} from "../utils/queries"
 
 export default function FindGameModal({ visible, onClose }) {
     const [formState, setFormState] = useState({ gameInput: '' });
-    const [getGame, { error }]= useQuery(QUERY_SEARCH_API);
+    const [getGame ,{ loading, error, data }] = useLazyQuery(QUERY_SEARCH_API);
     const createGameCard = async () => {
 
     }
@@ -22,11 +21,11 @@ export default function FindGameModal({ visible, onClose }) {
         try {
             const askedGame = formState.gameInput;
             console.log(askedGame)
-            const response = getGame({
-                variables: { name: askedGame, At:key.At,Tt:key.Tt },
+            const response  = await getGame( {
+                variables: { name: askedGame, At:key.At,Tt:key.Tt }
             })
             
-            console.log(response)
+            //console.log(response)
             if (response.ok) {
                 console.log(response);
                 createGameCard();
