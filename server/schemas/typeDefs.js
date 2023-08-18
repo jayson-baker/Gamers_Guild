@@ -34,7 +34,7 @@ const typeDefs = `
   type Game {
     _id: ID!
     name: String
-    url: String
+    image: String
   }
   
   type Query {
