@@ -6,7 +6,7 @@ The following link is to this project's GitHub repository
 https://github.com/jayson-baker/Gamers_Guild
 
 The following link is to this project's live website
-[Link to Heroku site]()
+(https://gamers-guild-024e835506e9.herokuapp.com/)
 
 
 ## Table of Contents
