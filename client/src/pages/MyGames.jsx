@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import  FindGameModal from '../components/FindGameModal'
 import { useQuery } from "@apollo/client";
-import { QUERY_USER} from "../utils/queries.js";
+import { QUERY_USER } from "../utils/queries.js";
 import MyGameCards from "../components/MyGameCards.jsx";
 
 
@@ -10,20 +10,11 @@ import MyGameCards from "../components/MyGameCards.jsx";
 export default function MyGames() {
   const [showModal, setShowModal] = useState(false);
   const handleOnClose = () => setShowModal(false);
-  const { data } = useQuery(QUERY_ALL_Games);
+  const userToken = localStorage.getItem('id_token');
+  const { data } = useQuery(QUERY_USER, { context: { headers: { "Authorization": `Bearer ${userToken}` } }});
     let games;
     if(data) {
       games = data.user.games;
-  }
-  const addGame = async (event) => {
-   
-  ;
-    if (response.ok) {
-      console.log(response)
-      console.log("Game Added");
-    } else {
-      alert("Failed to Find Game");
-    }
   }
     return (
     <div className="p-4 md:ml-64">
@@ -44,7 +35,7 @@ export default function MyGames() {
       {games ? (
         <>
     {games.map((game) => (
-                <Cards game={game.name} key={game._id} ></Cards>
+                <MyGameCards game={game.name} key={game._id} ></MyGameCards>
             ))};
             </>
             ): null}

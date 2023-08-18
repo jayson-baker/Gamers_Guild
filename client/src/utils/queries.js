@@ -3,15 +3,29 @@ import { gql } from "@apollo/client";
 export const QUERY_USER = gql`
   query User {
     user {
+      _id
+      email
+      games {
+        _id
+        name
+      }
       posts {
+        _id
         createdAt
+        game {
+          _id
+          name
+        }
+        replies {
+          _id
+          createdAt
+          text
+        }
         text
         title
-        game {
-          name
-          image
-        }
+        username
       }
+      username
     }
   }
 `;
@@ -23,7 +37,6 @@ export const QUERY_ALL_POSTS = gql`
       text
       game {
         name
-        image
       }
       createdAt
       username
@@ -71,10 +84,10 @@ export const QUERY_POST = gql`
   }
 `;
 export const QUERY_SEARCH_API = gql`
-  query searchApiGame($name: String!, $at: String!, $tt: String!) {
-    searchApiGame(name: $name, At: $At, Tt: $Tt) {
-      id
-      name
+query SearchApiGame($name: String!, $at: String!, $tt: String!){
+  searchApiGame(name: $name, at: $at, tt: $tt){
+    id
+    name
     }
   }
 `;

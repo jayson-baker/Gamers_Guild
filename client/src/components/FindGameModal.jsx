@@ -1,38 +1,46 @@
 import React from "react";
 import { useState } from "react";
-import { useLazyQuery } from '@apollo/client';
-import {QUERY_SEARCH_API} from "../utils/queries"
+import { useLazyQuery, useQuery } from '@apollo/client';
+import { useMutation } from "@apollo/client";
+import {QUERY_SEARCH_API, QUERY_USER} from "../utils/queries"
+import MyGameCards from "../components/MyGameCards.jsx";
+import { ADD_GAME, ADD_GAME_TO_DB } from "../utils/mutations";
 
 export default function FindGameModal({ visible, onClose }) {
     const [formState, setFormState] = useState({ gameInput: '' });
     const [getGame ,{ loading, error, data }] = useLazyQuery(QUERY_SEARCH_API);
-    const createGameCard = async () => {
+    const [dbuser, { da, loadi, err} ]= useMutation(ADD_GAME);
+    const [dbGame, { dat, loadin, erro}] = useMutation(ADD_GAME_TO_DB);
 
+    const saveToDb = async (game) => {
+        const mutationResponse = await dbGame({
+            variables: { name: game.name, image: game.id },
+          }).then(async (game) => {
+        const gametoUser = await dbuser({
+            variables: { _id: game},
+          });
+          })
+          return 
     }
     const getStash = () =>{
-        // Saves api token to localStorage
-        const At = localStorage.getItem('Twitch');
-        const Tt = localStorage.getItem('TT');
-        return {At, Tt}
+        // gets temp api token from localStorage
+        const at = localStorage.getItem('Twitch');
+        const tt = localStorage.getItem('TT');
+        return {at, tt}
       }
     const handleFormSubmit = async (event) => {
         event.preventDefault();
         const key = getStash();
+        console.log(key)
         try {
             const askedGame = formState.gameInput;
-            console.log(askedGame)
+            console.log({name: askedGame, at:key.at,tt:key.tt})
             const response  = await getGame( {
-                variables: { name: askedGame, At:key.At,Tt:key.Tt }
+                variables: { name: askedGame, at:key.at,tt:key.tt }
             })
             
-            //console.log(response)
-            if (response.ok) {
-                console.log(response);
-                createGameCard();
-            } else {
-                alert("Failed to Find Game");
-                return
-            }
+            console.log(response)
+            saveToDb(response.data.searchApiGame);
         } catch (e) {
             console.log(e);
         }

@@ -48,12 +48,13 @@ const resolvers = {
       const key = await validateTwitch();
       return key;
     },
-    searchApiGame: async (name, At, Tt) => {
-      console.log("call made");
-      console.log(await apiCall(name, At, Tt));
-      const call = await apiCall(name, At, Tt);
+    //takes the search perams and gets game id and image
+    searchApiGame: async (parent, args, ) => {
+      let searched = args.name
+      let ath = args.at
+      const call =  await apiCall(searched, ath);
       console.log(call);
-      return call;
+      return call
     },
     //gets games saved to db to search for posts.
     getGamesFromDB: async (context) => {
@@ -143,12 +144,12 @@ const resolvers = {
     addGameToDB: async (parent, args) => {
       const game = await Games.create(args);
 
-      return game;
+      return game._id;
     },
     addGame: async (parent, { id }, context) => {
       if (context.user) {
         return await Games.findByID(id, { new: true }).then(async ({ _id }) => {
-          return await User.findByIdAndUpdate(
+           await User.findByIdAndUpdate(
             { _id: context.user._id },
             { $push: { games: _id } },
             { new: true }
